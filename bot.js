@@ -32,6 +32,12 @@ controller.on('message', async(bot, message) => {
          console.log(response);
          console.log(response.fact);
          await bot.reply(message, response.fact);    
-      }  
-    }
+      }
+       else if(query.includes('pic me')){
+         console.log("pic me");
+         await bot.reply(message, {
+           files: ['https://cataas.com/cat']  
+          })
+       }
+     }
 });
