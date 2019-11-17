@@ -22,22 +22,21 @@ controller.on('message', async(bot, message) => {
      if(message.text) {
        const query = message.text.trim();
        if(query.includes('help')){
-         await bot.reply(message, 'Hi! I\'m Catbot! I will send you a cat fact whenever you ask.');
-         await bot.reply(message, 'Usage: @Catbot fact me');
+         let helpMessage = "Hi! I\'m CatBot! I will send you a cat fact or pic whenever you ask.\n" +
+             "To get a fact: \'@CatBot fact\'\n"+"To get a pic: \'@CatBot pic\'";
+         await bot.say(helpMessage);
        }    
-       else if(query.includes('fact me')){
+       else if(query.includes('fact')){
          console.log("hit me");
          let response = await fetch('https://catfact.ninja/fact');
          response = await response.json();
-         console.log(response);
-         console.log(response.fact);
-         await bot.reply(message, response.fact);    
+         await bot.say(response.fact);    
       }
-       else if(query.includes('pic me')){
+       else if(query.includes('pic')){
          console.log("pic me");
-         await bot.reply(message, {
+         await bot.say({
            files: ['https://cataas.com/cat']  
-          })
+          });
        }
      }
 });
